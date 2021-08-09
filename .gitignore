@@ -21,7 +21,6 @@ dist/
 
 # Maven
 target/
-dist/
 
 # JetBrains IDE
 .idea/
@@ -48,3 +47,16 @@ Thumbs.db
 *.mov
 *.wmv
 
+bin/
+.sonar/
+.settings/
+.externalToolBuilders/
+*.*~
+*.iml
+__pycache__/
+.pydevproject
+.project
+.classpath
+allure-results/
+allure-report/
+requestLogger.txt
