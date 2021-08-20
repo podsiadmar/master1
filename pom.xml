@@ -20,6 +20,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <assertj-core.version>3.20.2</assertj-core.version>
         <!--Do not update aspectj version it should stay on 1.9.6 right now-->
         <aspectj.version>1.9.6</aspectj.version>
         <slf4j-simple.version>1.7.31</slf4j-simple.version>
@@ -35,7 +36,6 @@
         <allure-cucumber6.version>2.13.8</allure-cucumber6.version>
         <jackson-databind.version>2.12.3</jackson-databind.version>
         <lombok.version>1.18.20</lombok.version>
-        <!--Do not update jsoup version. This is last version (1.11.3) with validateTLSCertificates. This is needed to make request to HTTP2-->
         <jsoup.version>1.11.3</jsoup.version>
         <guava.version>30.1.1-jre</guava.version>
         <!--Suites-->
@@ -94,6 +94,12 @@
     </build>
 
     <dependencies>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj-core.version}</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>org.jsoup</groupId>
             <artifactId>jsoup</artifactId>

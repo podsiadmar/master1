@@ -4,6 +4,7 @@ import common.steps.Base_Steps;
 import io.cucumber.java.DataTableType;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.assertj.core.api.Assertions;
 import org.testng.Assert;
 import projectName.entries.Entries_Endpoint;
 import projectName.entries.dataModel.Entries;
@@ -52,6 +53,9 @@ public class Entries_Steps extends Base_Steps {
         Entries actualEntriesResult = endpoint.getEntriesResultByApiName(expectedEntriesResult.getApi());
 
         //Assert
+        //TestNG assertion
         Assert.assertEquals(actualEntriesResult, expectedEntriesResult);
+        //AssertJ assertion
+        Assertions.assertThat(actualEntriesResult).isEqualTo(expectedEntriesResult);
     }
 }
