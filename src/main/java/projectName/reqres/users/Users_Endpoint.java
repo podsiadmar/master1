@@ -23,7 +23,7 @@ public class Users_Endpoint extends BaseEndpoint implements IEndpoint {
 
 
     public Users getUserResultByID(int id){
-        for (Users users : super.getDataModelAsArray(classType)[0].getUsers()) {
+        for (Users users : super.getDataModelAsArray(classType)[0].getData()) {
             if (users.getId() == id) {
                 return users;
             }
@@ -32,7 +32,7 @@ public class Users_Endpoint extends BaseEndpoint implements IEndpoint {
     }
 
     public String getEmail() {
-        return super.getDataModelAsArray(classType)[0].getUsers().get(0).getEmail();
+        return super.getDataModelAsArray(classType)[0].getData().get(0).getEmail();
     }
 
     public String getName() {
@@ -44,7 +44,7 @@ public class Users_Endpoint extends BaseEndpoint implements IEndpoint {
     }
 
     public Users getUserData() {
-        return super.getDataModelAsArray(classType)[0].getUsers().get(0);
+        return super.getDataModelAsArray(classType)[0].getData().get(0);
     }
 
     public Users_DataModel getUserDataModel() {

@@ -17,9 +17,10 @@ Feature: Users feature
 #
   @reqres
   Scenario: TC03 Send Get request to Users with parameters
-    When Send Get request to users
+    When User defines request with query parameter 'id' and value '2'
+      And Send GET request to users
     Then Response status should be 200
-      And User response should have at least one result like
+      And Users response should have at least one result like
         | ID | EMAIL                  | FIRST_NAME | LAST_NAME | AVATAR                                  |
         | 2  | janet.weaver@reqres.in | Janet      | Weaver    | https://reqres.in/img/faces/2-image.jpg |
 

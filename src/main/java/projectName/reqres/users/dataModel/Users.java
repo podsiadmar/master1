@@ -6,15 +6,15 @@ import lombok.Data;
 @SuppressWarnings("unused")
 @Data
 public class Users {
-    @JsonProperty("ID")
+    @JsonProperty("id")
     private int id;
-    @JsonProperty("EMAIL")
+    @JsonProperty("email")
     private String email;
-    @JsonProperty("FIRST_NAME")
+    @JsonProperty("first_name")
     private String firstName;
-    @JsonProperty("LAST_NAME")
+    @JsonProperty("last_name")
     private String lastName;
-    @JsonProperty("AVATAR")
+    @JsonProperty("avatar")
     private String avatar;
 
 
