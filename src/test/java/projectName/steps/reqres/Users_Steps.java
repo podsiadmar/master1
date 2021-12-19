@@ -26,8 +26,8 @@ public class Users_Steps extends Base_Steps {
     @DataTableType
     public Users setUsersObject(Map<String, String> user) {
         Users users = new Users();
-        users.setFirstName(changeNullToEmptyString(user.get("firstName")));
-        users.setLastName(changeNullToEmptyString(user.get("lastName")));
+        users.setFirst_Name(changeNullToEmptyString(user.get("first_name")));
+        users.setLast_Name(changeNullToEmptyString(user.get("last_name")));
         users.setEmail(changeNullToEmptyString(user.get("email")));
         users.setAvatar(changeNullToEmptyString(user.get("avatar")));
         users.setId(Integer.parseInt(user.get("id")));
