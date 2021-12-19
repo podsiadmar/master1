@@ -21,7 +21,7 @@ Feature: Users feature
       And Send GET request to users
     Then Response status should be 200
       And Users response should have at least one result like
-        | ID | EMAIL                  | FIRST_NAME | LAST_NAME | AVATAR                                  |
+        | id | email                  | first_name | last_name | avatar                                  |
         | 2  | janet.weaver@reqres.in | Janet      | Weaver    | https://reqres.in/img/faces/2-image.jpg |
 
 
