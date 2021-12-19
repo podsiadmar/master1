@@ -8,8 +8,8 @@ import lombok.Data;
 public class Users {
     private int id;
     private String email;
-    private String firstName;
-    private String lastName;
+    private String first_Name;
+    private String last_Name;
     private String avatar;
 
 
