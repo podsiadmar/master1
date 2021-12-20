@@ -30,6 +30,16 @@ public class Users_Endpoint extends BaseEndpoint implements IEndpoint {
         return null;
     }
 
+    public Users getUserResultByName(String name){
+        for (Users users : super.getDataModelAsArray(classType)[0].getData()) {
+            if (users.getFirst_Name().equals(name)) {
+                return users;
+            }
+        }
+//        super.getDataModelAsArray(classType)[0].getData().stream()
+        return null;
+    }
+
     public String getId(){return super.getValueFromField("id", super.getDataModelAsArray(classType)[0]);}
 
     public String getEmail() {

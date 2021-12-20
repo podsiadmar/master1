@@ -80,8 +80,10 @@ public class Users_Steps extends Base_Steps {
     }
 
     @When("Set {} TEST")
-    public void setIdTEST(String key){
-        endpoint.setUserDataByKeyName(key, endpoint.getId());
+    public void setIdTEST(Users expectedUsersResult, String key){
+        int resultID = endpoint.getUserResultByName(expectedUsersResult.getFirst_Name()).getId();
+
+        endpoint.setUserDataByKeyName(key, String.valueOf(resultID));
     }
 
 
@@ -95,6 +97,16 @@ public class Users_Steps extends Base_Steps {
     public void usersResponseShouldHaveAtLeastOneResultLike(Users expectedUsersResult) {
         //Act
         Users actualUsersResult = endpoint.getUserResultByID(expectedUsersResult.getId());
+
+        //Assert
+        Assert.assertEquals(actualUsersResult, expectedUsersResult);
+        Assertions.assertThat(actualUsersResult).isEqualTo(expectedUsersResult);
+    }
+
+    @Then("Users TEST")
+    public void usersResponseShouldHaveAtLeastOneResultLike1(Users expectedUsersResult) {
+        //Act
+        Users actualUsersResult = endpoint.getUserResultByName(expectedUsersResult.getFirst_Name());
 
         //Assert
         Assert.assertEquals(actualUsersResult, expectedUsersResult);
