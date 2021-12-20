@@ -11,6 +11,7 @@ import projectName.reqres.users.dataModel.Users;
 import projectName.reqres.users.dataModel.Users_DataModel;
 import testUtils.RestAssuredContext;
 import utils.TestContext;
+
 import java.util.Map;
 
 public class Users_Steps extends Base_Steps {
@@ -48,7 +49,6 @@ public class Users_Steps extends Base_Steps {
     }
 
 
-
     //region When
 
     @When("Send GET request to users")
@@ -78,15 +78,6 @@ public class Users_Steps extends Base_Steps {
     public void setUserData(String key, String value) {
         endpoint.setUserDataByKeyName(key, value);
     }
-
-    @When("Set {} TEST")
-    public void setIdTEST(Users expectedUsersResult, String key){
-        int resultID = endpoint.getUserResultByName(expectedUsersResult.getFirst_Name()).getId();
-
-        endpoint.setUserDataByKeyName(key, String.valueOf(resultID));
-    }
-
-
 
 
     //endregion
