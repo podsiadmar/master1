@@ -23,7 +23,7 @@ Feature: Users feature
 #      And Users response should have at least one result like
 #        | id | email                  | first_name | last_name | avatar                                  |
 #        | 2  | janet.weaver@reqres.in | Janet      | Weaver    | https://reqres.in/img/faces/2-image.jpg |
-#
+##
 #  @devReqres
 #  Scenario: TC04 Send put request to Users with updated data
 #    When User defines request with query parameter 'id' and value '2'
@@ -35,6 +35,9 @@ Feature: Users feature
   Scenario: TC05 First business flow test case
     When Send POST request to users
     Then Response status should be 201
+    When User updates request with job and manager value
+    And Send PUT request to users
+    Then Response status should be 200
 
 
 
