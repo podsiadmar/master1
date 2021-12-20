@@ -30,6 +30,8 @@ public class Users_Endpoint extends BaseEndpoint implements IEndpoint {
         return null;
     }
 
+    public String getId(){return super.getValueFromField("id", super.getDataModelAsArray(classType)[0]);}
+
     public String getEmail() {
         return super.getDataModelAsArray(classType)[0].getData().get(0).getEmail();
     }
