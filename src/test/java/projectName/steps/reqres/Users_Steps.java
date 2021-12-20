@@ -79,7 +79,7 @@ public class Users_Steps extends Base_Steps {
         endpoint.setUserDataByKeyName(key, value);
     }
 
-    @When("Set ID TEST")
+    @When("Set {} TEST")
     public void setIdTEST(String key){
         endpoint.setUserDataByKeyName(key, endpoint.getId());
     }

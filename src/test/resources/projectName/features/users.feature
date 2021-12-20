@@ -38,9 +38,7 @@ Feature: Users feature
     When User updates request with job and manager value
     And Send PUT request to users
     Then Response status should be 200
-    When Set ID TEST
-    Then Send GET request to users
-    Then Response status should be 200
+
 
 
 
