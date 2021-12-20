@@ -2,8 +2,6 @@ package projectName.reqres.users;
 
 import common.BaseEndpoint;
 import common.IEndpoint;
-import projectName.entries.dataModel.Entries;
-import projectName.entries.dataModel.Entries_DataModel;
 import projectName.reqres.users.dataModel.Users;
 import projectName.reqres.users.dataModel.Users_DataModel;
 
@@ -28,6 +26,7 @@ public class Users_Endpoint extends BaseEndpoint implements IEndpoint {
                 return users;
             }
         }
+//        super.getDataModelAsArray(classType)[0].getData().stream()
         return null;
     }
 
@@ -35,8 +34,10 @@ public class Users_Endpoint extends BaseEndpoint implements IEndpoint {
         return super.getDataModelAsArray(classType)[0].getData().get(0).getEmail();
     }
 
+    //
+
     public String getName() {
-        return super.getDataModelAsArray(classType)[0].getName();
+        return super.getValueFromField("name", super.getDataModelAsArray(classType)[0]);
     }
 
     public String getJob() {

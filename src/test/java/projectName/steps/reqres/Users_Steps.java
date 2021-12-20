@@ -26,10 +26,10 @@ public class Users_Steps extends Base_Steps {
     @DataTableType
     public Users setUsersObject(Map<String, String> user) {
         Users users = new Users();
-        users.setFirst_Name(changeNullToEmptyString(user.get("first_name")));
-        users.setLast_Name(changeNullToEmptyString(user.get("last_name")));
-        users.setEmail(changeNullToEmptyString(user.get("email")));
-        users.setAvatar(changeNullToEmptyString(user.get("avatar")));
+        users.setFirst_Name(user.get("first_name"));
+        users.setLast_Name(user.get("last_name"));
+        users.setEmail(user.get("email"));
+        users.setAvatar(user.get("avatar"));
         users.setId(Integer.parseInt(user.get("id")));
         return users;
     }
@@ -38,10 +38,8 @@ public class Users_Steps extends Base_Steps {
     @DataTableType
     public Users_DataModel setUsersDataObject(Map<String, String> user) {
         Users_DataModel users = new Users_DataModel();
-        users.setJob(changeNullToEmptyString(user.get("job")));
-//        users.setId(changeNullToEmptyString(user.get("id")));
-//        users.setCreatedAt(changeNullToEmptyString(user.get("createdAt")));
-        users.setName(changeNullToEmptyString(user.get("name")));
+        users.setJob(user.get("job"));
+        users.setName(user.get("name"));
         return users;
     }
 
@@ -78,13 +76,6 @@ public class Users_Steps extends Base_Steps {
     @When("User updates request with {} and {} value")
     public void setUserData(String key, String value) {
         endpoint.setUserDataByKeyName(key, value);
-    }
-
-    @Then("TEST {} key")
-    public void getTest(String key) {
-        String test = endpoint.getUserDataTEST(key);
-
-        Assertions.assertThat(test).isEqualTo("");
     }
 
     //endregion
