@@ -24,8 +24,8 @@ public class Register_Steps extends Base_Steps {
     @DataTableType
     public Register setData(Map<String, String> register){
         Register registerData = new Register();
-        registerData.setEmail(registerData.getEmail());
-        registerData.setPassword(registerData.getPassword());
+        registerData.setEmail(register.get("email"));
+        registerData.setPassword(register.get("password"));
         return registerData;
     }
 
