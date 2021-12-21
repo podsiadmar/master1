@@ -9,4 +9,7 @@ public class Register {
     private String email;
     @JsonProperty("password")
     private String password;
+
+    private int id;
+    private String token;
 }
