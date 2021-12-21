@@ -12,6 +12,7 @@ public class Register_Datamodel {
     private String email;
     private String password;
 
-
+    private int id;
+    private String token;
 
 }
