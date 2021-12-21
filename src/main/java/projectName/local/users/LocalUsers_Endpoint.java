@@ -10,7 +10,7 @@ public class LocalUsers_Endpoint extends BaseEndpoint implements IEndpoint {
 
     public final String path = "/users";
 
-    public LocalUsers_Endpoint(){super.initRequestBody(classType, "src/main/resources/projectName/local/local.json");}
+    public LocalUsers_Endpoint(){super.initRequestBody(classType, "projectName/local/local.json");}
 
     public void convertResponseToDataModel(String response) {super.convertJsonToDataModelArray(response, classType);}
 

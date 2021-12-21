@@ -1,19 +1,19 @@
-Feature: Users feature
-
-  Background: Init Rest Assured
-    Given Setup base request specification
-    And Set user credentials for Admin
+#Feature: Users feature
+#
+#  Background: Init Rest Assured
+#    Given Setup base request specification
+#    And Set user credentials for Admin
 
 #  @devReqres
 #  Scenario: TC01 Send Get request to Users
 #    When Send GET request to users
 #    Then Response status should be 200
 #
-  @devReqres
-  Scenario: TC02 Send Post request to Users
-    When Send POST request to users
-    Then Response status should be 201
-    And  Response should be non-empty
+#  @devReqres
+#  Scenario: TC02 Send Post request to Users
+#    When Send POST request to users
+#    Then Response status should be 201
+#    And  Response should be non-empty
 #
 #  @devReqres
 #  Scenario: TC03 Send Get request to Users with parameters
