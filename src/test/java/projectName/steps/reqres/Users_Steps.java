@@ -4,6 +4,7 @@ import common.steps.Base_Steps;
 import io.cucumber.java.DataTableType;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.restassured.path.json.JsonPath;
 import org.assertj.core.api.Assertions;
 import org.testng.Assert;
 import projectName.reqres.users.Users_Endpoint;
@@ -61,6 +62,8 @@ public class Users_Steps extends Base_Steps {
     public void sendPOSTRequestToUsers() {
         sendPostRequest(path, endpoint.getRequestBody(), true);
         String test = restAssuredContext.getResponse().asString();
+        String id = restAssuredContext.getResponse().jsonPath().get("id");
+
     }
 
     @When("Send PUT request to users")

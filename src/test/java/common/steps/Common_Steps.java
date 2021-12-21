@@ -94,6 +94,12 @@ public class Common_Steps extends Base_Steps {
         restAssuredContext.getRequestSpecification().queryParam(key, value);
     }
 
+    @When("TEST {string}")
+    public void defineQueryParamFromResponse(String key) {
+        String value = restAssuredContext.getResponse().jsonPath().get(key).toString();
+        restAssuredContext.getRequestSpecification().queryParam(key, value);
+    }
+
 
     @When("User defines request with query parameter {} with a list of values")
     public void defineQueryParams(String key, List<String> value) {
