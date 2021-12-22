@@ -27,16 +27,16 @@ public class LocalUsers_Steps extends Base_Steps {
         super.setEndpoint(endpoint);
     }
 
-    @DataTableType
-    public LocalUsers_Datamodel setDataFromResponse(Map<String, String> users){
-        LocalUsers_Datamodel localUsers_datamodel = new LocalUsers_Datamodel();
-        localUsers_datamodel.setEmail(restAssuredContext.getResponse().jsonPath().get("email").toString());
-        localUsers_datamodel.setFirst_name(restAssuredContext.getResponse().jsonPath().get("first_name").toString());
-        localUsers_datamodel.setLast_name(restAssuredContext.getResponse().jsonPath().get("last_name").toString());
-        localUsers_datamodel.setJob(restAssuredContext.getResponse().jsonPath().get("job").toString());
-        localUsers_datamodel.setId(Integer.parseInt(restAssuredContext.getResponse().jsonPath().get("id").toString()));
-        return localUsers_datamodel;
-    }
+//    @DataTableType
+//    public LocalUsers_Datamodel setDataFromResponse(Map<String, String> users){
+//        LocalUsers_Datamodel localUsers_datamodel = new LocalUsers_Datamodel();
+//        localUsers_datamodel.setEmail(users.get("email"));
+//        localUsers_datamodel.setFirst_name(users.get("first_name"));
+//        localUsers_datamodel.setLast_name(users.get("last_name"));
+//        localUsers_datamodel.setJob(users.get("job"));
+//        localUsers_datamodel.setId(Integer.parseInt(users.get("id")));
+//        return localUsers_datamodel;
+//    }
 
     @DataTableType
     public LocalUsers setData(Map<String, String> users){
@@ -45,8 +45,12 @@ public class LocalUsers_Steps extends Base_Steps {
         localUsers.setFirst_name(users.get("first_name"));
         localUsers.setLast_name(users.get("last_name"));
         localUsers.setJob(users.get("job"));
-        localUsers.setId(users.get("localID"));
+        localUsers.setId(Integer.parseInt(users.get("id")));
         return localUsers;
+    }
+
+    private String changeNullToEmptyString(String value) {
+        return value == null ? "" : value;
     }
 
     //region When=================================
@@ -76,14 +80,14 @@ public class LocalUsers_Steps extends Base_Steps {
 
     @When("Save the response data")
     public void safeDataFromUserResponse(){
-        LocalUsers_Datamodel actualUserData = endpoint.getUserDataModel();
+        LocalUsers_Datamodel  actualUserData = endpoint.getUserDataModel();
         System.out.println("ok");
     }
 
     @Then("LocalUsers response should have at least one result like")
     public void localUsersResponseShouldHaveAtLeastOneResultLike(LocalUsers expectedUsersResult) {
         //Act
-        LocalUsers actualUsersResult = endpoint.getEntriesResultByName(expectedUsersResult.getFirst_name());
+        LocalUsers actualUsersResult = endpoint.getUserResultByID(expectedUsersResult.getId());
 
         //Assert
         Assert.assertEquals(actualUsersResult, expectedUsersResult);
