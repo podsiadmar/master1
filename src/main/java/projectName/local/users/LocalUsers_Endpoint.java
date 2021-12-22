@@ -2,6 +2,7 @@ package projectName.local.users;
 
 import common.BaseEndpoint;
 import common.IEndpoint;
+import projectName.entries.dataModel.Entries;
 import projectName.local.users.dataModel.LocalUsers;
 import projectName.local.users.dataModel.LocalUsers_Datamodel;
 import projectName.reqres.users.dataModel.Users;
@@ -38,6 +39,15 @@ public class LocalUsers_Endpoint extends BaseEndpoint implements IEndpoint {
             }
         }
 //        super.getDataModelAsArray(classType)[0].getData().stream()
+        return null;
+    }
+
+    public LocalUsers getEntriesResultByName(String name) {
+        for (LocalUsers localUsers : super.getDataModelAsArray(classType)[0].getData()) {
+            if (localUsers.getFirst_name().equals(name)) {
+                return localUsers;
+            }
+        }
         return null;
     }
 

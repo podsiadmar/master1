@@ -83,7 +83,7 @@ public class LocalUsers_Steps extends Base_Steps {
     @Then("LocalUsers response should have at least one result like")
     public void localUsersResponseShouldHaveAtLeastOneResultLike(LocalUsers expectedUsersResult) {
         //Act
-        LocalUsers actualUsersResult = endpoint.getUserResultByID(expectedUsersResult.getId());
+        LocalUsers actualUsersResult = endpoint.getEntriesResultByName(expectedUsersResult.getFirst_name());
 
         //Assert
         Assert.assertEquals(actualUsersResult, expectedUsersResult);
