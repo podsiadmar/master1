@@ -64,7 +64,7 @@ public class Base_Steps {
                 .post(path)
                 .then().extract().response();
         restAssuredContext.setResponse(response);
-        if (response.getStatusCode() == 200 && isResponseConvertable) {
+        if (response.getStatusCode() == 201 && isResponseConvertable) {
             endpoint.convertResponseToDataModel(response.asString());
         }
     }

@@ -14,5 +14,7 @@ public class LocalUsers_Datamodel {
     private String last_name;
     private String job;
 
+    private String id;
+
 
 }
