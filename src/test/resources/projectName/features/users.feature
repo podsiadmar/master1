@@ -17,8 +17,8 @@ Feature: Users feature
 ##
   @devReqres
   Scenario: TC03 Send Get request to Users with parameters
-#    When User defines request with query parameter 'id' and value '2'
-    When Send GET request to users
+    When User defines request with query parameter 'id' and value '2'
+    And Send GET request to users
     Then Response status should be 200
       And Users response should have at least one result like
         | id | email                  | first_name | last_name | avatar                                  |

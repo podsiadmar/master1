@@ -28,6 +28,17 @@ public class LocalUsers_Steps extends Base_Steps {
     }
 
     @DataTableType
+    public LocalUsers_Datamodel setDataModel(Map<String, String> users){
+        LocalUsers_Datamodel localUsers_datamodel = new LocalUsers_Datamodel();
+        localUsers_datamodel.setEmail(users.get("email"));
+        localUsers_datamodel.setFirst_name(users.get("first_name"));
+        localUsers_datamodel.setLast_name(users.get("last_name"));
+        localUsers_datamodel.setJob(users.get("job"));
+        localUsers_datamodel.setId(Integer.parseInt(users.get("id")));
+        return localUsers_datamodel;
+    }
+
+    @DataTableType
     public LocalUsers setData(Map<String, String> users){
         LocalUsers localUsers = new LocalUsers();
         localUsers.setEmail(users.get("email"));

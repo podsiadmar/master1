@@ -32,24 +32,6 @@ public class LocalUsers_Endpoint extends BaseEndpoint implements IEndpoint {
 
     public LocalUsers_Datamodel getUserDataModel() {return super.getDataModelAsArray(classType)[0];}
 
-    public LocalUsers getUserResultByID(int id){
-        for (LocalUsers localUsers : super.getDataModelAsArray(classType)[0].getData()) {
-            if (localUsers.getId() == id) {
-                return localUsers;
-            }
-        }
-//        super.getDataModelAsArray(classType)[0].getData().stream()
-        return null;
-    }
-
-    public LocalUsers getEntriesResultByName(String name) {
-        for (LocalUsers localUsers : super.getDataModelAsArray(classType)[0].getData()) {
-            if (localUsers.getFirst_name().equals(name)) {
-                return localUsers;
-            }
-        }
-        return null;
-    }
 
 
 }
