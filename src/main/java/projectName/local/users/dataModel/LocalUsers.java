@@ -9,6 +9,5 @@ public class LocalUsers {
     private String first_name;
     private String last_name;
     private String job;
-    @JsonProperty("ID")
     private int id;
 }
