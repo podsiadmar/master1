@@ -11,7 +11,6 @@ import projectName.local.users.LocalUsers_Endpoint;
 import projectName.local.users.dataModel.LocalUsers;
 import projectName.local.users.dataModel.LocalUsers_Datamodel;
 import projectName.reqres.users.dataModel.Users;
-import projectName.reqres.users.dataModel.Users_DataModel;
 import testUtils.RestAssuredContext;
 import utils.TestContext;
 
@@ -34,7 +33,7 @@ public class LocalUsers_Steps extends Base_Steps {
         localUsers.setFirst_name(users.get("first_name"));
         localUsers.setLast_name(users.get("last_name"));
         localUsers.setJob(users.get("job"));
-        localUsers.setId(Integer.parseInt(users.get("ID")));
+        localUsers.setId(Integer.parseInt(users.get("id")));
         return localUsers;
     }
 
@@ -67,16 +66,16 @@ public class LocalUsers_Steps extends Base_Steps {
         endpoint.setUserDataByKeyName(key, value);
     }
 
-    @When("Save the response data")
-    public void safeDataFromUserResponse(){
-        LocalUsers_Datamodel  actualUserData = endpoint.getUserDataModel();
-        System.out.println("ok");
-    }
+//    @When("Save the response data")
+//    public void safeDataFromUserResponse(){
+//        LocalUsers_Datamodel  actualUserData = endpoint.getUserDataModel();
+//        System.out.println("ok");
+//    }
 
     @Then("LocalUsers response should have at least one result like")
     public void localUsersResponseShouldHaveAtLeastOneResultLike(LocalUsers expectedUsersResult) {
         //Act
-        LocalUsers_Datamodel actualUsersResult = endpoint.getUserDataModel();
+        LocalUsers actualUsersResult = endpoint.getUserResultByID(expectedUsersResult.getId());
 
         //Assert
         Assert.assertEquals(actualUsersResult, expectedUsersResult);

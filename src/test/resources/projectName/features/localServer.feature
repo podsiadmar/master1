@@ -17,7 +17,7 @@ Feature: Local Server Users Feature
 
     And LocalUsers response should have at least one result like
       | email                  | first_name | last_name | job    |id|
-      | mark.november@mail.com | Norbert    | Kolski    | Potter |49|
+      | mark.november@mail.com | Norbert    | Kolski    | Waiter |4 |
 
 #    And User defines request with query parameter 'id' from response body
 #    And Send GET request to Local Server
