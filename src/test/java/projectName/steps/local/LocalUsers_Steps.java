@@ -28,7 +28,7 @@ public class LocalUsers_Steps extends Base_Steps {
     }
 
     @DataTableType
-    public LocalUsers_Datamodel setDataFromResponse(Map<String, String> map){
+    public LocalUsers_Datamodel setDataFromResponse(Map<String, String> users){
         LocalUsers_Datamodel localUsers_datamodel = new LocalUsers_Datamodel();
         localUsers_datamodel.setEmail(restAssuredContext.getResponse().jsonPath().get("email").toString());
         localUsers_datamodel.setFirst_name(restAssuredContext.getResponse().jsonPath().get("first_name").toString());
@@ -45,6 +45,7 @@ public class LocalUsers_Steps extends Base_Steps {
         localUsers.setFirst_name(users.get("first_name"));
         localUsers.setLast_name(users.get("last_name"));
         localUsers.setJob(users.get("job"));
+        localUsers.setId(Integer.parseInt(users.get("id")));
         return localUsers;
     }
 
@@ -80,7 +81,7 @@ public class LocalUsers_Steps extends Base_Steps {
     }
 
     @Then("LocalUsers response should have at least one result like")
-    public void localUsersResponseShouldHaveAtLeastOneResultLike(Users expectedUsersResult) {
+    public void localUsersResponseShouldHaveAtLeastOneResultLike(LocalUsers expectedUsersResult) {
         //Act
         LocalUsers actualUsersResult = endpoint.getUserResultByID(expectedUsersResult.getId());
 
