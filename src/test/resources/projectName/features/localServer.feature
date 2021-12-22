@@ -14,6 +14,15 @@ Feature: Local Server Users Feature
     When Send POST request to Local Server
     Then Response should be non-empty
     And Response status should be 201
-    When User defines request with query parameter 'id' from response body
     When Save the response data
+    And User defines request with query parameter 'id' from response body
+    And Send GET request to Local Server
+    Then Response status should be 200
+    And Response body should contain user data
+    And LocalUsers response should have at least one result like
+      | email                  | first_name | last_name | job   |
+      | mark.november@mail.com | Mark       | November  | Potter|
+
+
+
 

@@ -2,11 +2,15 @@ package projectName.steps.local;
 
 import common.steps.Base_Steps;
 import io.cucumber.java.DataTableType;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.java.sl.In;
+import org.assertj.core.api.Assertions;
+import org.testng.Assert;
 import projectName.local.users.LocalUsers_Endpoint;
 import projectName.local.users.dataModel.LocalUsers;
 import projectName.local.users.dataModel.LocalUsers_Datamodel;
+import projectName.reqres.users.dataModel.Users;
 import projectName.reqres.users.dataModel.Users_DataModel;
 import testUtils.RestAssuredContext;
 import utils.TestContext;
@@ -73,5 +77,15 @@ public class LocalUsers_Steps extends Base_Steps {
     public void safeDataFromUserResponse(){
         LocalUsers_Datamodel actualUserData = endpoint.getUserDataModel();
         System.out.println("ok");
+    }
+
+    @Then("LocalUsers response should have at least one result like")
+    public void usersResponseShouldHaveAtLeastOneResultLike(Users expectedUsersResult) {
+        //Act
+        LocalUsers actualUsersResult = endpoint.getUserResultByID(expectedUsersResult.getId());
+
+        //Assert
+        Assert.assertEquals(actualUsersResult, expectedUsersResult);
+        Assertions.assertThat(actualUsersResult).isEqualTo(expectedUsersResult);
     }
 }
