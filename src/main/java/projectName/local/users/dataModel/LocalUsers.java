@@ -10,5 +10,5 @@ public class LocalUsers {
     private String last_name;
     private String job;
     @JsonProperty("localID")
-    private int id;
+    private String id;
 }
