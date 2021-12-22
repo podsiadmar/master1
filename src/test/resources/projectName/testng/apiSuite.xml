@@ -6,7 +6,7 @@
         <listener class-name="testUtils.RetryListener"/>
     </listeners>
     <test name="All API tests">
-        <parameter name="url" value="${envReq.URL}"/>
+        <parameter name="url" value="${env.URL}"/>
         <classes>
             <class name="projectName.runners.ApiRunner"/>
         </classes>

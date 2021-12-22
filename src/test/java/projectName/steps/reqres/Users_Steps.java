@@ -4,7 +4,6 @@ import common.steps.Base_Steps;
 import io.cucumber.java.DataTableType;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.restassured.path.json.JsonPath;
 import org.assertj.core.api.Assertions;
 import org.testng.Assert;
 import projectName.reqres.users.Users_Endpoint;
