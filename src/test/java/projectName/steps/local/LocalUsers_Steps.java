@@ -45,7 +45,7 @@ public class LocalUsers_Steps extends Base_Steps {
         localUsers.setFirst_name(users.get("first_name"));
         localUsers.setLast_name(users.get("last_name"));
         localUsers.setJob(users.get("job"));
-        localUsers.setId(Integer.parseInt(users.get("id")));
+        localUsers.setId(Integer.parseInt(users.get("localID")));
         return localUsers;
     }
 
