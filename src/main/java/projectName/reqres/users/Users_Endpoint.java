@@ -19,7 +19,6 @@ public class Users_Endpoint extends BaseEndpoint implements IEndpoint {
         super.convertJsonToDataModelArray(response, classType);
     }
 
-
     public Users getUserResultByID(int id){
         for (Users users : super.getDataModelAsArray(classType)[0].getData()) {
             if (users.getId() == id) {

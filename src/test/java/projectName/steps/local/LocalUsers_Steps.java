@@ -27,17 +27,6 @@ public class LocalUsers_Steps extends Base_Steps {
         super.setEndpoint(endpoint);
     }
 
-//    @DataTableType
-//    public LocalUsers_Datamodel setDataFromResponse(Map<String, String> users){
-//        LocalUsers_Datamodel localUsers_datamodel = new LocalUsers_Datamodel();
-//        localUsers_datamodel.setEmail(users.get("email"));
-//        localUsers_datamodel.setFirst_name(users.get("first_name"));
-//        localUsers_datamodel.setLast_name(users.get("last_name"));
-//        localUsers_datamodel.setJob(users.get("job"));
-//        localUsers_datamodel.setId(Integer.parseInt(users.get("id")));
-//        return localUsers_datamodel;
-//    }
-
     @DataTableType
     public LocalUsers setData(Map<String, String> users){
         LocalUsers localUsers = new LocalUsers();
@@ -87,7 +76,7 @@ public class LocalUsers_Steps extends Base_Steps {
     @Then("LocalUsers response should have at least one result like")
     public void localUsersResponseShouldHaveAtLeastOneResultLike(LocalUsers expectedUsersResult) {
         //Act
-        LocalUsers actualUsersResult = endpoint.getUserResultByID(expectedUsersResult.getId());
+        LocalUsers_Datamodel actualUsersResult = endpoint.getUserDataModel();
 
         //Assert
         Assert.assertEquals(actualUsersResult, expectedUsersResult);

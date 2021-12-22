@@ -1,8 +1,8 @@
-#Feature: Users feature
-#
-#  Background: Init Rest Assured
-#    Given Setup base request specification
-#    And Set user credentials for Admin
+Feature: Users feature
+
+  Background: Init Rest Assured
+    Given Setup base request specification
+    And Set user credentials for Admin
 
 #  @devReqres
 #  Scenario: TC01 Send Get request to Users
@@ -15,14 +15,14 @@
 #    Then Response status should be 201
 #    And  Response should be non-empty
 ##
-#  @devReqres
-#  Scenario: TC03 Send Get request to Users with parameters
+  @devReqres
+  Scenario: TC03 Send Get request to Users with parameters
 #    When User defines request with query parameter 'id' and value '2'
-#      And Send GET request to users
-#    Then Response status should be 200
-#      And Users response should have at least one result like
-#        | id | email                  | first_name | last_name | avatar                                  |
-#        | 2  | janet.weaver@reqres.in | Janet      | Weaver    | https://reqres.in/img/faces/2-image.jpg |
+    When Send GET request to users
+    Then Response status should be 200
+      And Users response should have at least one result like
+        | id | email                  | first_name | last_name | avatar                                  |
+        | 2  | janet.weaver@reqres.in | Janet      | Weaver    | https://reqres.in/img/faces/2-image.jpg |
 #
 #  @devReqres
 #  Scenario: TC04 Send put request to Users with updated data
