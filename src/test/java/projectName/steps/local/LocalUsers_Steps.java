@@ -80,7 +80,7 @@ public class LocalUsers_Steps extends Base_Steps {
     }
 
     @Then("LocalUsers response should have at least one result like")
-    public void usersResponseShouldHaveAtLeastOneResultLike(Users expectedUsersResult) {
+    public void localUsersResponseShouldHaveAtLeastOneResultLike(Users expectedUsersResult) {
         //Act
         LocalUsers actualUsersResult = endpoint.getUserResultByID(expectedUsersResult.getId());
 
