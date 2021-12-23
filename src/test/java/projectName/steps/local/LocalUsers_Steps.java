@@ -63,12 +63,16 @@ public class LocalUsers_Steps extends Base_Steps {
     @When("Users defines request with query param ID from previous response")
     public void defineIdQueryParamFromResponse(){
         restAssuredContext.getRequestSpecification().queryParam("id", endpoint.getUserDataModel().getId());
-
     }
 
-    @When("User updates user request with {} and {} value")
-    public void setData(String key, String value) {
-        endpoint.setUserDataByKeyName(key, value);
+    @When("Users updates request with query param ID from previous response")
+    public void updateIdQueryParamFromResponse(){
+        restAssuredContext.getRequestSpecification().queryParam("id", endpoint.getUserDataModel().getId());
+    }
+
+    @When("User updates user request with id from previous response")
+    public void setData() {
+        endpoint.setUserDataByKeyName("id", endpoint.getId());
     }
 
 //    @When("Save the response data")
@@ -121,5 +125,17 @@ public class LocalUsers_Steps extends Base_Steps {
 
         //Assert
         Assertions.assertThat(actualJob).isEqualTo(expectedJob);
+    }
+
+    @When("LocalUser updates request with {} and {} value")
+    public void setLocalUserData(String key, String value) {
+        endpoint.setUserDataByKeyName(key, value);
+    }
+
+    @When("Send PUT request to LocalUsers")
+    public void sendPUTRequestToLocalUsers() {
+
+        sendPutRequest(path+"/"+endpoint.getId(), endpoint.getRequestBody());
+        String test = restAssuredContext.getResponse().asString();
     }
 }

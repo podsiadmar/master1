@@ -10,6 +10,7 @@ public class LocalUsers_Endpoint extends BaseEndpoint implements IEndpoint {
     private final Class<LocalUsers_Datamodel[]> classType = LocalUsers_Datamodel[].class;
 
     public final String path = "/users";
+    protected String putPath = "/users";
 
     public LocalUsers_Endpoint() {
         super.initRequestBody(classType, "projectName/local/local.json");
@@ -66,6 +67,8 @@ public class LocalUsers_Endpoint extends BaseEndpoint implements IEndpoint {
 //        super.getDataModelAsArray(classType)[0].getData().stream()
         return null;
     }
+
+
 
 
 
