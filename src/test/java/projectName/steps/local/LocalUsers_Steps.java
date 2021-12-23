@@ -57,8 +57,13 @@ public class LocalUsers_Steps extends Base_Steps {
 
     @When("User defines request with query parameter {string} from response body")
     public void defineQueryParamFromResponse(String key) {
-        String value = restAssuredContext.getResponse().jsonPath().get(key).toString();
-        restAssuredContext.getRequestSpecification().queryParam(key, value);
+        restAssuredContext.getRequestSpecification().queryParam(key, restAssuredContext.getResponse().jsonPath().get(key).toString());
+    }
+
+    @When("Users defines request with query param ID from previous response")
+    public void defineIdQueryParamFromResponse(){
+        restAssuredContext.getRequestSpecification().queryParam("id", endpoint.getUserDataModel().getId());
+
     }
 
     @When("User updates user request with {} and {} value")
@@ -80,5 +85,41 @@ public class LocalUsers_Steps extends Base_Steps {
         //Assert
         Assert.assertEquals(actualUsersResult, expectedUsersResult);
         Assertions.assertThat(actualUsersResult).isEqualTo(expectedUsersResult);
+    }
+
+    @Then("Response body should contain email with {} value")
+    public void checkResponseEmail(String expectedEmail) {
+        //Act
+        String actualEmail = endpoint.getEmail();
+
+        //Assert
+        Assertions.assertThat(actualEmail).isEqualTo(expectedEmail);
+    }
+
+    @Then("Response body should contain first name with {} value")
+    public void responseBodyShouldContainFirstNameWithValue(String expectedName) {
+        //Act
+        String actualName = endpoint.getFirstName();
+
+        //Assert
+        Assertions.assertThat(actualName).isEqualTo(expectedName);
+    }
+
+    @Then("Response body should contain last name with {} value")
+    public void responseBodyShouldContainLastNameWithValue(String expectedName) {
+        //Act
+        String actualName = endpoint.getLastName();
+
+        //Assert
+        Assertions.assertThat(actualName).isEqualTo(expectedName);
+    }
+
+    @Then("Response body should contain job with {} value")
+    public void responseBodyShouldContainJobWithValue(String expectedJob) {
+        //Act
+        String actualJob = endpoint.getJob();
+
+        //Assert
+        Assertions.assertThat(actualJob).isEqualTo(expectedJob);
     }
 }

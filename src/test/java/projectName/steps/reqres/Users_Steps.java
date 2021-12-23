@@ -124,32 +124,7 @@ public class Users_Steps extends Base_Steps {
         Assertions.assertThat(actualUserData).isEqualTo(expectedUserData);
     }
 
-    @Then("Response body should contain email with {} value")
-    public void checkResponseEmail(String expectedEmail) {
-        //Act
-        String actualEmail = endpoint.getEmail();
 
-        //Assert
-        Assertions.assertThat(actualEmail).isEqualTo(expectedEmail);
-    }
-
-    @Then("Response body should contain name with {} value")
-    public void responseBodyShouldContainNameWithValue(String expectedName) {
-        //Act
-        String actualName = endpoint.getName();
-
-        //Assert
-        Assertions.assertThat(actualName).isEqualTo(expectedName);
-    }
-
-    @Then("Response body should contain job with {} value")
-    public void responseBodyShouldContainJobWithValue(String expectedJob) {
-        //Act
-        String actualJob = endpoint.getJob();
-
-        //Assert
-        Assertions.assertThat(actualJob).isEqualTo(expectedJob);
-    }
 
     //endregion
 }

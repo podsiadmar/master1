@@ -2,11 +2,8 @@ package projectName.local.users;
 
 import common.BaseEndpoint;
 import common.IEndpoint;
-import projectName.entries.dataModel.Entries;
 import projectName.local.users.dataModel.LocalUsers;
 import projectName.local.users.dataModel.LocalUsers_Datamodel;
-import projectName.reqres.users.dataModel.Users;
-import projectName.reqres.users.dataModel.Users_DataModel;
 
 public class LocalUsers_Endpoint extends BaseEndpoint implements IEndpoint {
 
@@ -69,6 +66,8 @@ public class LocalUsers_Endpoint extends BaseEndpoint implements IEndpoint {
 //        super.getDataModelAsArray(classType)[0].getData().stream()
         return null;
     }
+
+
 
 
 
