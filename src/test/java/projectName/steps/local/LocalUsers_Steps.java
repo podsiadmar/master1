@@ -4,13 +4,10 @@ import common.steps.Base_Steps;
 import io.cucumber.java.DataTableType;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.java.sl.In;
 import org.assertj.core.api.Assertions;
 import org.testng.Assert;
 import projectName.local.users.LocalUsers_Endpoint;
 import projectName.local.users.dataModel.LocalUsers;
-import projectName.local.users.dataModel.LocalUsers_Datamodel;
-import projectName.reqres.users.dataModel.Users;
 import testUtils.RestAssuredContext;
 import utils.TestContext;
 
@@ -27,13 +24,18 @@ public class LocalUsers_Steps extends Base_Steps {
     }
 
     @DataTableType
-    public LocalUsers setData(Map<String, String> users){
+    public LocalUsers setData(Map<String, String> users) {
         LocalUsers localUsers = new LocalUsers();
         localUsers.setEmail(users.get("email"));
         localUsers.setFirst_name(users.get("first_name"));
         localUsers.setLast_name(users.get("last_name"));
         localUsers.setJob(users.get("job"));
-        localUsers.setId(Integer.parseInt(users.get("id")));
+
+        if (users.get("id").equals("DYNAMIC")) {
+            localUsers.setId(Integer.parseInt(endpoint.getIdFromDataVault()));
+        } else {
+            localUsers.setId(Integer.parseInt(users.get("id")));
+        }
         return localUsers;
     }
 
@@ -50,9 +52,31 @@ public class LocalUsers_Steps extends Base_Steps {
     }
 
     @When("Send POST request to Local Server")
-    public void sendPostRequestToLocalServer(){
+    public void sendPostRequestToLocalServer() {
         sendPostRequest(path, endpoint.getRequestBody(), true);
         System.out.println(restAssuredContext.getResponse().andReturn().body().asString());
+    }
+
+    @When("Send PUT request to LocalUsers with id {}")
+    public void sendPUTRequestToLocalUsers(Integer id) {
+
+        sendPutRequest(path + "/" + id, endpoint.getRequestBody());
+    }
+
+    @When("Send PUT request to LocalUsers with Id from response")
+    public void sendPUTRequestToLocalUsersWithId() {
+
+        sendPutRequest(path + "/" + endpoint.getId(), endpoint.getRequestBody());
+    }
+
+    @When("Send DELETE request to Localusers to remove user with {} id")
+    public void sendDeleteRequestToLocalUsersWithGivenId(Integer id) {
+        sendDeleteRequest(path + "/" + id, true);
+    }
+
+    @When("Send DELETE request to Localusers to remove user id from response")
+    public void sendDeleteRequestToLocalUsersWithIdFromResponse() {
+        sendDeleteRequest(path + "/" + endpoint.getId(), true);
     }
 
     @When("User defines request with query parameter {string} from response body")
@@ -61,12 +85,12 @@ public class LocalUsers_Steps extends Base_Steps {
     }
 
     @When("Users defines request with query param ID from previous response")
-    public void defineIdQueryParamFromResponse(){
+    public void defineIdQueryParamFromResponse() {
         restAssuredContext.getRequestSpecification().queryParam("id", endpoint.getUserDataModel().getId());
     }
 
     @When("Users updates request with query param ID from previous response")
-    public void updateIdQueryParamFromResponse(){
+    public void updateIdQueryParamFromResponse() {
         restAssuredContext.getRequestSpecification().queryParam("id", endpoint.getUserDataModel().getId());
     }
 
@@ -75,20 +99,36 @@ public class LocalUsers_Steps extends Base_Steps {
         endpoint.setUserDataByKeyName("id", endpoint.getId());
     }
 
-//    @When("Save the response data")
-//    public void safeDataFromUserResponse(){
-//        LocalUsers_Datamodel  actualUserData = endpoint.getUserDataModel();
-//        System.out.println("ok");
-//    }
+
+    @When("LocalUser updates request with {} and {} value")
+    public void setLocalUserData(String key, String value) {
+        endpoint.setUserDataByKeyName(key, value);
+    }
+    //end region=================================
+
+    //region Then=================================
+    @Then("Save results to datavault")
+    public void saveResultsToDataVault() {
+        endpoint.saveResultsFromDataModelToDataVault();
+    }
+
+    @Then("Verify that response contains the same data as stored in DataVault")
+    public void assertResponseWithDataFromDataVault() {
+        //Act
+        LocalUsers localUserDataVault = endpoint.setLocalUserWithDataFromDataVault();
+        LocalUsers localUserDataModel = endpoint.getResultsFromDataModel();
+
+        //Assert
+        Assert.assertEquals(localUserDataVault, localUserDataModel);
+    }
 
     @Then("LocalUsers response should have at least one result like")
     public void localUsersResponseShouldHaveAtLeastOneResultLike(LocalUsers expectedUsersResult) {
         //Act
-        LocalUsers actualUsersResult = endpoint.getUserResultByID(expectedUsersResult.getId());
+        LocalUsers actualUsersResult = endpoint.getResultsFromDataModel();
 
         //Assert
         Assert.assertEquals(actualUsersResult, expectedUsersResult);
-        Assertions.assertThat(actualUsersResult).isEqualTo(expectedUsersResult);
     }
 
     @Then("Response body should contain email with {} value")
@@ -126,16 +166,6 @@ public class LocalUsers_Steps extends Base_Steps {
         //Assert
         Assertions.assertThat(actualJob).isEqualTo(expectedJob);
     }
+    //end region=================================
 
-    @When("LocalUser updates request with {} and {} value")
-    public void setLocalUserData(String key, String value) {
-        endpoint.setUserDataByKeyName(key, value);
-    }
-
-    @When("Send PUT request to LocalUsers")
-    public void sendPUTRequestToLocalUsers() {
-
-        sendPutRequest(path+"/"+endpoint.getId(), endpoint.getRequestBody());
-        String test = restAssuredContext.getResponse().asString();
-    }
 }

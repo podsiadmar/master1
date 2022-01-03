@@ -1,6 +1,6 @@
 package projectName.local.users.dataModel;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.Data;
 
 @Data

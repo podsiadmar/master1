@@ -60,16 +60,12 @@ public class Users_Steps extends Base_Steps {
     @When("Send POST request to users")
     public void sendPOSTRequestToUsers() {
         sendPostRequest(path, endpoint.getRequestBody(), true);
-        String test = restAssuredContext.getResponse().asString();
-        String id = restAssuredContext.getResponse().jsonPath().get("id");
-
     }
 
-//    @When("Send PUT request to users")
-//    public void sendPUTRequestToUsers() {
-//        sendPutRequest(path, endpoint.getRequestBody());
-//        String test = restAssuredContext.getResponse().asString();
-//    }
+    @When("Send PUT request to users")
+    public void sendPUTRequestToUsers() {
+        sendPutRequest(path, endpoint.getRequestBody());
+    }
 
     @When("Send DELETE request to users")
     public void sendDELETERequestToUsers() {

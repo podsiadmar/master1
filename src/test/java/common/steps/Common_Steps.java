@@ -126,6 +126,11 @@ public class Common_Steps extends Base_Steps {
         Assert.assertNotEquals(getActualCount(), 0);
     }
 
+    @Then("Response should be empty")
+    public void assertEmptyResponse() {
+        Assert.assertEquals(getActualCount(), 0);
+    }
+
     private int getActualCount() {
         Response response = restAssuredContext.getResponse();
         JsonPath jsonPath = new JsonPath(response.asString());

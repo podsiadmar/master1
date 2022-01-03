@@ -1,7 +1,6 @@
 package projectName.local.users.dataModel;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.util.List;
@@ -14,7 +13,5 @@ public class LocalUsers_Datamodel {
     private String last_name;
     private String job;
     private String id;
-
-    private List<LocalUsers> users;
 
 }
