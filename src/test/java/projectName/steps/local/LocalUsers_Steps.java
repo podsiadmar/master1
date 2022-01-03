@@ -47,19 +47,15 @@ public class LocalUsers_Steps extends Base_Steps {
     @When("Send GET request to Local Server")
     public void sendGetRequestToLocalServer() {
         sendGetRequest(path, true);
-        System.out.println(restAssuredContext.getResponse().andReturn().body().asString());
-
     }
 
     @When("Send POST request to Local Server")
     public void sendPostRequestToLocalServer() {
         sendPostRequest(path, endpoint.getRequestBody(), true);
-        System.out.println(restAssuredContext.getResponse().andReturn().body().asString());
     }
 
     @When("Send PUT request to LocalUsers with id {}")
     public void sendPUTRequestToLocalUsers(Integer id) {
-
         sendPutRequest(path + "/" + id, endpoint.getRequestBody());
     }
 
