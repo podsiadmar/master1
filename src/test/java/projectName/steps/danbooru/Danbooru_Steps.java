@@ -21,6 +21,7 @@ public class Danbooru_Steps extends Base_Steps {
     @When("User sends GET request to Danbooru to retrieve post with {} ID")
     public void sendGetRequestToDanbooruEndpointToGetPostWithID(String id){
         sendGetRequest(EndpointsPathHandler.getPathWithNameParameter(getPath, id));
+        System.out.println(restAssuredContext.getResponse().asString());
     }
 
 

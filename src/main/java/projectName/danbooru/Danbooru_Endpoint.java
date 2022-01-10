@@ -10,6 +10,10 @@ public class Danbooru_Endpoint extends BaseEndpoint implements IEndpoint {
 
     public final String getPath = "/posts/{id}.json";
 
+    public Danbooru_Endpoint() {
+        super.initRequestBody(classType, "projectName/danbooru/danbooru.json");
+    }
+
 
     public void convertResponseToDataModel(String response)  {
         super.convertJsonToDataModelArray(response, classType);
