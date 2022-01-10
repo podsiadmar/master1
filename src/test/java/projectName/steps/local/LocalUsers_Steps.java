@@ -8,6 +8,7 @@ import org.assertj.core.api.Assertions;
 import org.testng.Assert;
 import projectName.local.users.LocalUsers_Endpoint;
 import projectName.local.users.dataModel.LocalUsers;
+import testUtils.EndpointsPathHandler;
 import testUtils.RestAssuredContext;
 import utils.TestContext;
 
@@ -17,6 +18,7 @@ public class LocalUsers_Steps extends Base_Steps {
 
     private final LocalUsers_Endpoint endpoint = new LocalUsers_Endpoint();
     private final String path = endpoint.path;
+    private final String putPath = endpoint.putPath;
 
     public LocalUsers_Steps(TestContext testContext, RestAssuredContext restAssuredContext) {
         super(testContext, restAssuredContext);
@@ -30,12 +32,10 @@ public class LocalUsers_Steps extends Base_Steps {
         localUsers.setFirst_name(users.get("first_name"));
         localUsers.setLast_name(users.get("last_name"));
         localUsers.setJob(users.get("job"));
-
-        if (users.get("id").equals("DYNAMIC")) {
-            localUsers.setId(Integer.parseInt(endpoint.getIdFromDataVault()));
-        } else {
-            localUsers.setId(Integer.parseInt(users.get("id")));
-        }
+        //id
+        localUsers.setId(users.get("id").equals("DYNAMIC")
+                ? Integer.parseInt(super.testContext.getCommonContextMapOfStrings("postID"))
+                : Integer.parseInt(users.get("id")));
         return localUsers;
     }
 
@@ -43,7 +43,8 @@ public class LocalUsers_Steps extends Base_Steps {
         return value == null ? "" : value;
     }
 
-    //region When=================================
+    //region When
+
     @When("Send GET request to Local Server")
     public void sendGetRequestToLocalServer() {
         sendGetRequest(path, true);
@@ -61,8 +62,7 @@ public class LocalUsers_Steps extends Base_Steps {
 
     @When("Send PUT request to LocalUsers with Id from response")
     public void sendPUTRequestToLocalUsersWithId() {
-
-        sendPutRequest(path + "/" + endpoint.getId(), endpoint.getRequestBody());
+        sendPutRequest(EndpointsPathHandler.getPathWithNameParameter(putPath, endpoint.getId()), endpoint.getRequestBody());
     }
 
     @When("Send DELETE request to Localusers to remove user with {} id")
@@ -85,11 +85,6 @@ public class LocalUsers_Steps extends Base_Steps {
         restAssuredContext.getRequestSpecification().queryParam("id", endpoint.getUserDataModel().getId());
     }
 
-    @When("Users updates request with query param ID from previous response")
-    public void updateIdQueryParamFromResponse() {
-        restAssuredContext.getRequestSpecification().queryParam("id", endpoint.getUserDataModel().getId());
-    }
-
     @When("User updates user request with id from previous response")
     public void setData() {
         endpoint.setUserDataByKeyName("id", endpoint.getId());
@@ -100,23 +95,10 @@ public class LocalUsers_Steps extends Base_Steps {
     public void setLocalUserData(String key, String value) {
         endpoint.setUserDataByKeyName(key, value);
     }
-    //end region=================================
 
-    //region Then=================================
-    @Then("Save results to datavault")
-    public void saveResultsToDataVault() {
-        endpoint.saveResultsFromDataModelToDataVault();
-    }
+    //endregion
 
-    @Then("Verify that response contains the same data as stored in DataVault")
-    public void assertResponseWithDataFromDataVault() {
-        //Act
-        LocalUsers localUserDataVault = endpoint.setLocalUserWithDataFromDataVault();
-        LocalUsers localUserDataModel = endpoint.getResultsFromDataModel();
-
-        //Assert
-        Assert.assertEquals(localUserDataVault, localUserDataModel);
-    }
+    //region Then
 
     @Then("LocalUsers response should have at least one result like")
     public void localUsersResponseShouldHaveAtLeastOneResultLike(LocalUsers expectedUsersResult) {
@@ -125,6 +107,7 @@ public class LocalUsers_Steps extends Base_Steps {
 
         //Assert
         Assert.assertEquals(actualUsersResult, expectedUsersResult);
+        Assertions.assertThat(actualUsersResult).isEqualTo(expectedUsersResult);
     }
 
     @Then("Response body should contain email with {} value")
@@ -162,6 +145,10 @@ public class LocalUsers_Steps extends Base_Steps {
         //Assert
         Assertions.assertThat(actualJob).isEqualTo(expectedJob);
     }
-    //end region=================================
+
+    @Then("Save ID from Post to TestContext")
+    public void saveData() {
+        super.testContext.setCommonContextMapOfStrings("postID", endpoint.getUserDataModel().getId());
+    }
 
 }

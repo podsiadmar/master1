@@ -16,13 +16,16 @@ public class TestContext {
 
     @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
-    private Map<Object, String> commonContextMapOfStrings = new HashMap<>();
+    private Map<String, String> commonContextMapOfStrings = new HashMap<>();
+    private Map<Object, Object> commonContextMapOfObjects = new HashMap<>();
 
-    public void setCommonContextMapOfStrings(Object key, String value) {
-        commonContextMapOfStrings.put(key, value);
-    }
+    public void setCommonContextMapOfStrings(String key, String value) {commonContextMapOfStrings.put(key, value);}
 
-    public String getCommonContextMapOfStrings(Object key) {
+    public String getCommonContextMapOfStrings(String key) {
         return commonContextMapOfStrings.get(key);
     }
+
+    public void setCommonContextMapOfObjects(Object key, Object value) {commonContextMapOfObjects.put(key, value);}
+
+    public Object setCommonContextMapOfObjects(Object key) {return commonContextMapOfObjects.get(key);}
 }
