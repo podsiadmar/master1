@@ -1,6 +1,5 @@
 package projectName.theDogApi.dataModel.Breeds;
 
-import io.cucumber.java.eo.Se;
 import lombok.Getter;
 import lombok.Setter;
 

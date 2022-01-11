@@ -4,7 +4,10 @@ import common.steps.Base_Steps;
 import io.cucumber.java.DataTableType;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.assertj.core.api.Assertions;
+import org.testng.Assert;
 import projectName.theDogApi.Breeds_Endpoint;
+import projectName.theDogApi.dataModel.Breeds.Breeds_Datamodel;
 import testUtils.EndpointsPathHandler;
 import testUtils.RestAssuredContext;
 import utils.TestContext;
@@ -21,18 +24,18 @@ public class Breeds_Steps extends Base_Steps {
         super.setEndpoint(endpoint);
     }
 
-//    @DataTableType
-//    public BreedsList setBreedsObject(Map<String, String> breed) {
-//        BreedsList breeds = new BreedsList();
-//        breeds.setId(breed.get("id"));
-//        breeds.setName(breed.get("name"));
-//        breeds.setBred_for(breed.get("bred_for"));
-//        breeds.setBreed_group(breed.get("breed_group"));
-//        breeds.setLife_span(breed.get("life_span"));
-//        breeds.setTemperament(breed.get("temperament"));
-//        breeds.setOrigin(breed.get("origin"));
-//        return breeds;
-//    }
+    @DataTableType
+    public Breeds_Datamodel setBreedsObject(Map<String, String> breed) {
+        Breeds_Datamodel breeds = new Breeds_Datamodel();
+        breeds.setId(breed.get("id"));
+        breeds.setName(breed.get("name"));
+        breeds.setBred_for(breed.get("bred_for"));
+        breeds.setBreed_group(breed.get("breed_group"));
+        breeds.setLife_span(breed.get("life_span"));
+        breeds.setTemperament(breed.get("temperament"));
+        breeds.setOrigin(breed.get("origin"));
+        return breeds;
+    }
 
 
     //region When
@@ -58,6 +61,18 @@ public class Breeds_Steps extends Base_Steps {
     @Then("Print data model")
     public void print(){
         endpoint.getBreedsDataModel();
+    }
+
+    @Then("Breed response should have at least one result like")
+    public void assertEntriesResponseOneResult(Breeds_Datamodel expectedBreedsResult) {
+        //Act
+        Breeds_Datamodel actualEntriesResult = endpoint.getBreedsObjectById(expectedBreedsResult.getId());
+
+        //Assert
+        //TestNG assertion
+        Assert.assertEquals(actualEntriesResult, expectedBreedsResult);
+        //AssertJ assertion
+        Assertions.assertThat(actualEntriesResult).isEqualTo(expectedBreedsResult);
     }
 
 
