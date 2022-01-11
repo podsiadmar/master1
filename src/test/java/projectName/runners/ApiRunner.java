@@ -5,6 +5,6 @@ import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
         features = {"src/test/resources/projectName/features"},
-        glue = {"projectName/steps"})
+        glue = {"projectName/steps/theDogApi"})
 public class ApiRunner extends CommonRunnerConfig {
 }

@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-    <configuration default="false" name="API @danbooru" type="TestNG">
+    <configuration default="false" name="API @theDogApi" type="TestNG">
         <shortenClasspath name="NONE" />
         <useClassPathOnly />
         <option name="SUITE_NAME" value="$PROJECT_DIR$/src/test/resources/projectName/testng/apiSuite.xml" />
@@ -8,7 +8,7 @@
         <option name="METHOD_NAME" value="" />
         <option name="GROUP_NAME" value="" />
         <option name="TEST_OBJECT" value="SUITE" />
-        <option name="VM_PARAMETERS" value="-ea -Denv.URL=&quot;https://testbooru.donmai.us&quot; -Dcucumber.filter.tags=&quot;@danbooru&quot; -Ddataproviderthreadcount=1" />
+        <option name="VM_PARAMETERS" value="-ea -Denv.URL=&quot;https://api.thedogapi.com/v1&quot; -Dcucumber.filter.tags=&quot;@theDogApi&quot; -Ddataproviderthreadcount=1" />
         <option name="PARAMETERS" value="" />
         <option name="OUTPUT_DIRECTORY" value="" />
         <option name="PROPERTIES_FILE" value="" />
