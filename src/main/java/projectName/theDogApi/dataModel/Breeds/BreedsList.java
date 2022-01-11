@@ -1,15 +1,17 @@
 package projectName.theDogApi.dataModel.Breeds;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
-import java.lang.reflect.Array;
+import java.util.List;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Breeds {
+public class BreedsList {
 
+
+    List<Weight> weight;
+    List<Height> height;
     private String id;
     private String name;
     private String bred_for;
@@ -18,5 +20,6 @@ public class Breeds {
     private String temperament;
     private String origin;
     private String reference_image_id;
+    List<Image> image;
 
 }

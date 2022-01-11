@@ -9,4 +9,3 @@ Feature: Example feature
         When User defines request with query parameter 'api_key' and value '30c33a38-18e0-4a91-98fa-e542e6c1978d'
           And User send GET request to Breeds endpoint to return breed with id 1
         Then Response status should be 200
-          And Breed verivication
