@@ -1,7 +1,6 @@
 package projectName.theDogApi;
 import common.BaseEndpoint;
 import common.IEndpoint;
-import projectName.theDogApi.dataModel.Breeds.BreedsList;
 import projectName.theDogApi.dataModel.Breeds.Breeds_Datamodel;
 
 public class Breeds_Endpoint extends BaseEndpoint implements IEndpoint {
