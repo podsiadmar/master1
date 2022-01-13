@@ -13,7 +13,10 @@ public class Favourites_Endpoint extends BaseEndpoint implements IEndpoint {
         super.initRequestBody(classType, "projectName/theDogApi/favourites/favourites.json");
     }
 
+    public void setFavouritesDataByKeyName(String key, String value) {super.setValueOfField(key, value, super.getDataModelAsArray(classType)[0]);}
+
     public void convertResponseToDataModel(String response) {super.convertJsonToDataModelArray(response, classType);}
 
-    public Favourites_Datamodel getBreedsDataModel(){ return super.getDataModelAsArray(classType)[0];}
+    public Favourites_Datamodel getFavouritesDataModel(){ return super.getDataModelAsArray(classType)[0];}
+
 }

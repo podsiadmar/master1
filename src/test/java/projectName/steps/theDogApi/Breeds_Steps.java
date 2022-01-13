@@ -45,7 +45,6 @@ public class Breeds_Steps extends Base_Steps {
         sendGetRequest(EndpointsPathHandler.getPathWithNameParameter(path, ""), true);
         System.out.println(restAssuredContext.getResponse().asString());
 
-
     }
 
     @When("User send GET request to Breeds endpoint to return breed with id {}")
