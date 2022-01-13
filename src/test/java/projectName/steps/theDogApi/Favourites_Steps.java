@@ -40,9 +40,7 @@ public class Favourites_Steps extends Base_Steps {
     }
 
     @When("User defines body parameter {} with value {}")
-    public void test(String key, String value){
-        endpoint.setFavouritesDataByKeyName(key, value);
-    }
+    public void defineBodyParameterToFavourites(String key, String value){endpoint.setFavouritesDataByKeyName(key, value);}
 
 
 }
