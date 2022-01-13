@@ -39,7 +39,7 @@ public class Favourites_Steps extends Base_Steps {
         sendDeleteRequest(EndpointsPathHandler.getPathWithNameParameter(path, id), true);
     }
 
-    @When("User defines body parameter {} with value {}")
+    @When("User defines Favourites endpoint body parameter {} with value {}")
     public void defineBodyParameterToFavourites(String key, String value){endpoint.setFavouritesDataByKeyName(key, value);}
 
 

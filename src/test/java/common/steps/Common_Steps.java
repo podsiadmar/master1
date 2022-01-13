@@ -3,6 +3,7 @@ package common.steps;
 import static io.restassured.RestAssured.given;
 import static testUtils.Users.userRoles;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -45,6 +46,21 @@ public class Common_Steps extends Base_Steps {
                 .contentType(ContentType.JSON)
                 .header("User-Agent", "RestAssured \uD83D\uDC38")
                 .header("X-Requested-With", "XMLHttpRequest");
+        restAssuredContext.setRequestSpecification(requestSpecification);
+    }
+
+    @Given("Set request content type to multipart")
+    public void setupRequestContentType(){
+        RequestSpecification requestSpecification = given()
+                .contentType(ContentType.MULTIPART);
+        restAssuredContext.setRequestSpecification(requestSpecification);
+    }
+
+    @Given("Add file multipart to request with path {}")
+    public void addMultipartDoForm(String path){
+        File file = new File(path);
+        RequestSpecification requestSpecification = given()
+                .multiPart(file);
         restAssuredContext.setRequestSpecification(requestSpecification);
     }
 

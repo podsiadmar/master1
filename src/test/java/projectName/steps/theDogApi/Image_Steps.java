@@ -65,6 +65,10 @@ public class Image_Steps extends Base_Steps {
         sendPostRequest(EndpointsPathHandler.getPathWithNameParameter(imagesIdBreed, id, breed), endpoint.getRequestBody(), true);
     }
 
+    @When("User defines Images endpoint body parameter {} with value {}")
+    public void defineBodyParameterToFavourites(String key, String value){
+        endpoint.setImagesDataByKeyName(key, value);}
+
 
 
 }
